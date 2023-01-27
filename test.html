@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM getElementById</title>
+    </script>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div id="parent">
+        <div id="child1">
+        </div>
+        <div id="child2">
+            <div id="subchild">
+                subchild!
+            </div>
+        </div>
+    </div>
+    <script>
+        function getElementById(id) {
+            let match = null;
+            const doFind = node => {
+                if (!match && node.id === id) match = node;
+                if (!match) return [...node.childNodes].find(doFind);
+            }
+            doFind(document.body);
+            return match;
+        }
+        console.log(getElementById('subchild').innerHTML);
+    </script>
+</body>
+
+</html>
